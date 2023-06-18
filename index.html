@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keine Ahnung</title>
+  <style>
+    .roulette {
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .roulette .spinner {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-origin: center;
+      transition: transform 5s ease;
+    }
+    
+    .roulette .cell {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="roulette">
+    <div class="spinner">
+      <div class="cell">Cell 1</div>
+      <div class="cell">Cell 2</div>
+      <div class="cell">Cell 3</div>
+      <!-- Add more cells here -->
+    </div>
+  </div>
+  
+  <button onclick="spinRoulette()">Spin</button>
+  
+  <script>
+    function spinRoulette() {
+      var spinner = document.querySelector('.spinner');
+      var cells = spinner.getElementsByClassName('cell');
+      var numCells = cells.length;
+      var degrees = Math.floor(Math.random() * 360) + 1;
+      var rotation = 360 * 5 + degrees;
+      
+      spinner.style.transform = 'rotate(' + rotation + 'deg)';
+      
+      setTimeout(function() {
+        var result = (360 - (rotation % 360)) / (360 / numCells);
+        alert('Result: Cell ' + Math.ceil(result));
+      }, 5500); // Adjust the timeout value to match the transition duration in CSS
+    }
+  </script>
+</body>
+</html>
